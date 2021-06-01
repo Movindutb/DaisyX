@@ -91,11 +91,22 @@ async def get_start_func(message, strings, edit=False):
         ),
     )
     buttons.add(
+        InlineKeyboardButton("▶️Youtube", url="https://youtube.com/channel/UC04AUyOQmht0c8Bgc2GehRw"),
+        InlineKeyboardButton(
+            "🎭Owner", url="https://t.me/percy_jackson_4"
+        ),
+    )
+    buttons.add(
         InlineKeyboardButton(
              "😍Add Hermione to your group",
             url=f"https://telegram.me/miss_musicybot?startgroup=true",
+        ),
+    )
+     buttons.add(
+        InlineKeyboardButton(
+             "😍Add Music Assistant",
+            url=f"https://telegram.me/sing_hermione?startgroup=true",
         )
-        
     )
     # Handle error when user click the button 2 or more times simultaneously
     with suppress(MessageNotModified):
@@ -136,7 +147,7 @@ async def help_cmd(message, strings):
 async def help_cmd_g(message, strings):
     text = strings["btn_group_help"]
     button = InlineKeyboardMarkup().add(
-        InlineKeyboardButton(text=text, url="https://t.me/DaisyXBOT?start")
+        InlineKeyboardButton(text=text, url="https://t.me/miss_musicybot?start")
     )
     await message.reply(strings["help_header"], reply_markup=button)
 
