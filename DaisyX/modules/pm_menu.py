@@ -106,7 +106,7 @@ async def get_start_func(message, strings, edit=False):
         InlineKeyboardButton(
              "😍Add Music Assistant",
             url=f"https://telegram.me/sing_hermione?startgroup=true",
-        )
+        ),
     )
     # Handle error when user click the button 2 or more times simultaneously
     with suppress(MessageNotModified):
