@@ -102,7 +102,7 @@ async def get_start_func(message, strings, edit=False):
             url=f"https://telegram.me/miss_musicybot?startgroup=true",
         ),
     )
-     buttons.add(
+    buttons.add(
         InlineKeyboardButton(
              "😍Add Music Assistant",
             url=f"https://telegram.me/sing_hermione?startgroup=true",
