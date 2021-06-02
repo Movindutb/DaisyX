@@ -93,20 +93,20 @@ async def get_start_func(message, strings, edit=False):
     buttons.add(
         InlineKeyboardButton("▶️Youtube", url="https://youtube.com/channel/UC04AUyOQmht0c8Bgc2GehRw"),
         InlineKeyboardButton(
-            "🎭Owner", url="https://t.me/percy_jackson_4"
+            "🎭Owner", url="https://t.me/percy_jackson_4",
         ),
     )
     buttons.add(
         InlineKeyboardButton(
              "😍Add Hermione to your group",
-            url=f"https://telegram.me/miss_musicybot?startgroup=true"
+            url=f"https://telegram.me/miss_musicybot?startgroup=true",
         ),
     )
      buttons.add(
         InlineKeyboardButton(
              "😍Add Music Assistant",
-            url=f"https://telegram.me/sing_hermione?startgroup=true"
-        ),
+            url=f"https://telegram.me/sing_hermione?startgroup=true",
+        )
     )
     # Handle error when user click the button 2 or more times simultaneously
     with suppress(MessageNotModified):
