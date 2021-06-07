@@ -187,7 +187,7 @@ STRINGS:
 
   pm_menu:
     start_hi_group: 'Hey there! My name is Hermione Granger.Who are you my dear 😘'
-    start_hi: "Hey there! My name is <b>Hermione.</b>\nI can help manage your groups with useful features, feel free to add me to your groups! Powered by CeylonTech "
+    start_hi: "Hey there! My name is <b>Hermione.</b>\nI can help manage your groups with useful features, feel free to add me to your groups! for music bot options clic /m_start . Powered by CeylonTech "
     btn_source: "💞Instagram "
     btn_help: "❔ Help"
     btn_lang: "🇺🇸 Language"
@@ -197,7 +197,7 @@ STRINGS:
     back: "🏃‍♂️ Back"
 
     # /help
-    help_header: "Hi Boss! I'm <b>Daisy</b>. An anime themed super powerful group management bot with many handy tools. So why are you waiting. Let me to assist you"
+    help_header: "Hi Boss! I'm <b>Hermione</b>. An anime themed super powerful group management bot with many handy tools. So why are you waiting. Let me to assist you"
     click_btn: Click here
 
   disable:
