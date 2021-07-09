@@ -1,7 +1,3 @@
-# Copyright (C) 2018 - 2020 MrYacha. All rights reserved. Source code available under the AGPL.
-# Copyright (C) 2021 TeamDaisyX
-# Copyright (C) 2020 Inuka Asith
-
 # This file is part of Daisy (Telegram Bot)
 
 # This program is free software: you can redistribute it and/or modify
@@ -24,9 +20,8 @@ import sys
 
 import rapidjson
 import requests
-from Skem import skemmers
 
-from DaisyX import DAISY_VERSION, bot, dp
+from DaisyX import DAISY_VERSION, OPERATORS, OWNER_ID, bot, dp
 from DaisyX.decorator import COMMANDS_ALIASES, REGISTRED_COMMANDS, register
 from DaisyX.modules import LOADED_MODULES
 from DaisyX.services.mongo import db, mongodb
@@ -78,18 +73,15 @@ async def get_bot_ip(message):
 
 @register(cmds="term", is_owner=True)
 async def cmd_term(message):
-    if message.from_user.id in devs:
-        msg = await message.reply("Running...")
-        command = str(message.text.split(" ", 1)[1])
-        text = "<b>Shell:</b>\n"
-        text += (
-            "<code>"
-            + html.escape(await chat_term(message, command), quote=False)
-            + "</code>"
-        )
-        await msg.edit_text(text)
-    else:
-        pass
+    msg = await message.reply("Running...")
+    command = str(message.text.split(" ", 1)[1])
+    text = "<b>Shell:</b>\n"
+    text += (
+        "<code>"
+        + html.escape(await chat_term(message, command), quote=False)
+        + "</code>"
+    )
+    await msg.edit_text(text)
 
 
 @register(cmds="leavechat", is_owner=True)
@@ -237,15 +229,12 @@ async def get_event(message):
 
 @register(cmds="stats", is_op=True)
 async def stats(message):
-    if message.from_user.id in skemmers:
-        text = f"<b>Daisy {DAISY_VERSION} stats</b>\n"
+    text = f"<b>Daisy {DAISY_VERSION} stats</b>\n"
 
-        for module in [m for m in LOADED_MODULES if hasattr(m, "__stats__")]:
-            text += await module.__stats__()
+    for module in [m for m in LOADED_MODULES if hasattr(m, "__stats__")]:
+        text += await module.__stats__()
 
-        await message.reply(text)
-    else:
-        pass
+    await message.reply(text)
 
 
 async def __stats__():
@@ -254,6 +243,9 @@ async def __stats__():
         text += f"* Webhooks mode, listen port: <code>{os.getenv('WEBHOOKS_PORT', 8080)}</code>\n"
     else:
         text += "* Long-polling mode\n"
+    text += "* Database structure version <code>{}</code>\n".format(
+        (await db.db_structure.find_one({}))["db_ver"]
+    )
     local_db = await db.command("dbstats")
     if "fsTotalSize" in local_db:
         text += "* Database size is <code>{}</code>, free <code>{}</code>\n".format(
@@ -275,6 +267,7 @@ async def __stats__():
 
 @get_strings_dec("owner_stuff")
 async def __user_info__(message, user_id, strings):
-    global skemmers
-    if user_id in skemmers:
+    if user_id == OWNER_ID:
+        return strings["father"]
+    elif user_id in OPERATORS:
         return strings["sudo_crown"]
